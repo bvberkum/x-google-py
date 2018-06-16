@@ -1,0 +1,17 @@
+- type: application/vnd.org.wtwta.project
+  main: x-google-py
+  id: x-google-py
+  version: 0.0.0 # x-google-py
+  license: GPL-3.0
+  repositories:
+    github: git@github.com:bvberkum/x-google-py.git
+  scripts:
+    init:
+      - htd package update
+      - htd package sh-scripts init check
+      - htd package remotes-init
+      - vc regenerate
+    check:
+      - verbosity=1 git-versioning check
+    test:
+      - pytest
