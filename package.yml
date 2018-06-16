@@ -5,13 +5,28 @@
   license: GPL-3.0
   repositories:
     github: git@github.com:bvberkum/x-google-py.git
+  env: 'pyvenv=~/.pyvenv'
   scripts:
     init:
       - htd package update
-      - htd package sh-scripts init check
+      - htd package sh-scripts init check test
       - htd package remotes-init
       - vc regenerate
     check:
       - verbosity=1 git-versioning check
+    install-pyvenv:
+      - test -d ${pyvenv}/x-google-py || virtualenv ${pyvenv}/x-google-py
+      - source ${pyvenv}/x-google-py/bin/activate
+      - pip install -r requirements.txt
+    reset-pyvenv:
+      - rm -rf ${pyvenv}/x-google-py
+      - htd run install-pyvenv
     test:
+      - . ${pyvenv}/x-google-py/bin/activate
       - pytest
+    main:
+      - test -e .cllct || htd run init
+      - test -e ${pyvenv}/x-google-py -a ${pyvenv}/x-google-py -nt requirements.txt ||
+          htd run install-pyvenv
+      - . ./.cllct/tools/env.sh
+      - sh ./.cllct/scripts/test.sh

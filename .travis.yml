@@ -1,0 +1,19 @@
+language: python
+
+python:
+  - "2.7"
+
+env:
+  global:
+    - PYTHONPATH=~/lib/py:$PYTHONPATH
+
+before_install:
+  - mkdir -vp ~/lib/py
+    # XXX: travis build cannot install pip requriements without these
+  - pip install keyring requests_oauthlib
+
+before_script:
+  - ln -s $PWD/src/py ~/lib/py/x_google_py
+
+script:
+  - pytest

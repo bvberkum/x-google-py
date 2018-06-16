@@ -1,0 +1,6 @@
+keyring
+gspread
+gtasks
+oauth2client
+requests_oauthlib
+pytest
