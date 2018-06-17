@@ -5,7 +5,7 @@
   license: GPL-3.0
   repositories:
     github: git@github.com:bvberkum/x-google-py.git
-  env: 'pyvenv=~/.pyvenv'
+  env: 'pyvenv=~/.pyvenv GOOGLE_SCRIPT_JSON_SECRET_FILE=$HOME/.local/etc/x-google-py-app-client-secret.json'
   scripts:
     init:
       - htd package update

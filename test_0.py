@@ -10,3 +10,4 @@ class NullUnitTestCase(unittest.TestCase):
 
 def test_0_3_import():
     import x_google_py
+    import x_google_py.creds
